@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './TaskItem.module.css';
 
-export const TaskItem = ({ task }) => {
+export const TaskItem = ({ task, deleteTask }) => {
 	const [isChecked, setIsChecked] = useState(task.checked);
 	const handleCheckboxChange = (e) => {
 		setIsChecked(!isChecked);
@@ -34,7 +34,7 @@ export const TaskItem = ({ task }) => {
 				<button
 					className={styles.delete}
 					aria-label={`Delete ${task.name} Task`}
-					// onClick={}
+					onClick={() => deleteTask(task.id)}
 				>
 					<i className="h h-trash-2"></i>
 				</button>
