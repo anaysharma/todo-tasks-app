@@ -1,10 +1,15 @@
 import { useState } from 'react';
 
-export const CustomForm = () => {
+export const CustomForm = ({ addTask }) => {
 	const [task, setTask] = useState('');
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
+		addTask({
+			name: task,
+			checked: false,
+			id: Date.now(),
+		});
 		setTask('');
 	};
 
