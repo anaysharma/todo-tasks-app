@@ -22,37 +22,37 @@ export const EditForm = ({ editedTask, updateTask, closeEditMode }) => {
 
 	return (
 		<div
-			className="editDialog"
+			className="edit-dialog"
 			role="dialog"
 			aria-labelledby="editTask"
 			onClick={(e) => {
 				e.target === e.currentTarget && closeEditMode();
 			}}
 		>
-			<form className="editForm" onSubmit={handleFormSubmit}>
-				<div className="wrapper">
-					<input
-						type="text"
-						id="editTask"
-						className="input"
-						value={updatedTaskName}
-						onInput={(e) => setupdatedTaskName(e.target.value)}
-						required
-						autoFocus
-						maxLength={60}
-						placeholder="Update Task"
-					/>
-					<label htmlFor="editTask" className="label">
+			<form className="edit-form" onSubmit={handleFormSubmit}>
+				<div className="edit-wrapper">
+					<label htmlFor="editTask" className="edit-label">
 						Update Task
+						<input
+							type="text"
+							id="editTask"
+							className="edit-input"
+							value={updatedTaskName}
+							onInput={(e) => setupdatedTaskName(e.target.value)}
+							required
+							autoFocus
+							maxLength={60}
+							placeholder="Update Task"
+						/>
 					</label>
+					<button
+						className="edit-btn"
+						aria-label={`confirm edited task to now read ${updatedTaskName}`}
+						type="submit"
+					>
+						<i className="h h-check"></i>
+					</button>
 				</div>
-				<button
-					className="btn"
-					aria-label={`confirm edited task to now read ${updatedTaskName}`}
-					type="submit"
-				>
-					<i className="h h-check"></i>
-				</button>
 			</form>
 		</div>
 	);

@@ -23,7 +23,7 @@ export const TaskItem = ({ task, deleteTask, toggleTask, enterEditMode }) => {
 					{task.name}
 				</label>
 			</div>
-			<div className="task-group">
+			<div className="task-button-group">
 				<button
 					className="edit-button"
 					aria-label={`Update ${task.name} Task`}

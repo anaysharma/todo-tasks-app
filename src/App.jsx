@@ -45,12 +45,44 @@ function App() {
 
 	const handleTaskViewButtonClick = (e) => {
 		setCurrentTaskView(e.target.getAttribute('data-viewAria'));
+		document.querySelectorAll('.view-button').forEach((item) => {
+			item.setAttribute('selected', 'false');
+		});
+		e.target.setAttribute('selected', 'true');
 	};
 
 	return (
 		<div className="container">
 			<header>
-				<h1>{tasks.length ? 'Task List' : 'No Tasks added'}</h1>
+				<h1>{tasks.length ? 'TASKS LIST' : 'NO TASK ADDED'}</h1>
+				<div className="task-view-container">
+					<div className="task-button-box">
+						<button
+							className="btn-all view-button"
+							aria-label="veiw all tasks"
+							data-viewaria="all"
+							onClick={handleTaskViewButtonClick}
+						>
+							All
+						</button>
+						<button
+							className="btn-todo view-button"
+							aria-label="veiw incomplete tasks"
+							data-viewaria="incomplete"
+							onClick={handleTaskViewButtonClick}
+						>
+							Todo
+						</button>
+						<button
+							className="btn-done view-button"
+							aria-label="veiw complete tasks"
+							data-viewaria="complete"
+							onClick={handleTaskViewButtonClick}
+						>
+							Done
+						</button>
+					</div>
+				</div>
 			</header>
 			{isEditing && (
 				<EditForm
@@ -60,33 +92,7 @@ function App() {
 				/>
 			)}
 			<CustomForm addTask={addTask} />
-			<div className="task-view-container">
-				<button
-					className="btn-all"
-					aria-label="veiw all tasks"
-					data-selected="true"
-					data-viewAria="all"
-					onClick={handleTaskViewButtonClick}
-				>
-					All
-				</button>
-				<button
-					className="btn-todo"
-					aria-label="veiw incomplete tasks"
-					data-viewAria="incomplete"
-					onClick={handleTaskViewButtonClick}
-				>
-					ToDo
-				</button>
-				<button
-					className="btn-done"
-					aria-label="veiw complete tasks"
-					data-viewAria="complete"
-					onClick={handleTaskViewButtonClick}
-				>
-					Done
-				</button>
-			</div>
+
 			{tasks &&
 				(currentTaskView === 'all' ? (
 					<TaskList
