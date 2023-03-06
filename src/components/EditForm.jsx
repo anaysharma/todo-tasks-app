@@ -1,7 +1,19 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 
-export const EditForm = ({ editedTask, updateTask }) => {
+export const EditForm = ({ editedTask, updateTask, closeEditMode }) => {
 	const [updatedTaskName, setupdatedTaskName] = useState(editedTask.name);
+
+	useEffect(() => {
+		const closeModelOnEsc = (e) => {
+			e.key === 'Escape' && closeEditMode();
+		};
+		window.addEventListener('keydown', closeModelOnEsc);
+
+		return () => {
+			window.removeEventListener('keydown', closeModelOnEsc);
+		};
+	}, [closeEditMode]);
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
@@ -12,7 +24,9 @@ export const EditForm = ({ editedTask, updateTask }) => {
 		<div
 			role="dialog"
 			aria-labelledby="editTask"
-			// onClick={}
+			onClick={(e) => {
+				e.target === e.currentTarget && closeEditMode();
+			}}
 		>
 			<form className="editForm" onSubmit={handleFormSubmit}>
 				<div className="wrapper">

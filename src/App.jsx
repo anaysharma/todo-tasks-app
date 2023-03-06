@@ -47,7 +47,11 @@ function App() {
 				<h1>My Task List</h1>
 			</header>
 			{isEditing && (
-				<EditForm editedTask={editedTask} updateTask={updateTask} />
+				<EditForm
+					editedTask={editedTask}
+					updateTask={updateTask}
+					closeEditMode={closeEditMode}
+				/>
 			)}
 			<CustomForm addTask={addTask} />
 			{tasks && (
