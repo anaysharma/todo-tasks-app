@@ -7,6 +7,7 @@ function App() {
 	const [tasks, setTasks] = useState([]);
 	const [editedTask, setEditedTask] = useState(null);
 	const [isEditing, setIsEditing] = useState(false);
+	const [previousFocusElement, setPreviousFocusElement] = useState(null);
 
 	const addTask = (task) => {
 		setTasks((prevState) => [...prevState, task]);
@@ -24,6 +25,7 @@ function App() {
 
 	const closeEditMode = () => {
 		setIsEditing(false);
+		previousFocusElement.focus();
 	};
 
 	const updateTask = (task) => {
@@ -36,6 +38,7 @@ function App() {
 	const enterEditMode = (task) => {
 		setEditedTask(task);
 		setIsEditing(true);
+		setPreviousFocusElement(document.activeElement);
 	};
 
 	return (
