@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import styles from './TaskItem.module.css';
 
-export const TaskItem = ({ task, deleteTask, toggleTask }) => {
+export const TaskItem = ({ task, deleteTask, toggleTask, enterEditMode }) => {
 	const [isChecked, setIsChecked] = useState(task.checked);
-	const handleCheckboxChange = (e) => {
+
+	const handleCheckboxChange = () => {
 		setIsChecked(!isChecked);
 		toggleTask(task.id);
 	};
@@ -27,7 +28,7 @@ export const TaskItem = ({ task, deleteTask, toggleTask }) => {
 				<button
 					className={styles.edit}
 					aria-label={`Update ${task.name} Task`}
-					// onClick={}
+					onClick={() => enterEditMode(task)}
 				>
 					<i className="h h-edit"></i>
 				</button>
