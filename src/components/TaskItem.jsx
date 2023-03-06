@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import styles from './TaskItem.module.css';
 
 export const TaskItem = ({ task, deleteTask, toggleTask, enterEditMode }) => {
 	const [isChecked, setIsChecked] = useState(task.checked);
@@ -10,23 +9,23 @@ export const TaskItem = ({ task, deleteTask, toggleTask, enterEditMode }) => {
 	};
 
 	return (
-		<li className={styles.task}>
-			<div className={styles['task-group']}>
+		<li className="task">
+			<div className="task-group">
 				<input
-					className={styles.checkbox}
+					className="checkbox"
 					type="checkbox"
 					checked={isChecked}
 					onChange={handleCheckboxChange}
 					name={task.name}
 					id={task.id}
 				/>
-				<label htmlFor={task.id} className={styles.label}>
+				<label htmlFor={task.id} className="label">
 					{task.name}
 				</label>
 			</div>
-			<div className={styles['task-group']}>
+			<div className="task-group">
 				<button
-					className={styles.edit}
+					className="edit-button"
 					aria-label={`Update ${task.name} Task`}
 					onClick={() => enterEditMode(task)}
 				>
@@ -34,7 +33,7 @@ export const TaskItem = ({ task, deleteTask, toggleTask, enterEditMode }) => {
 				</button>
 
 				<button
-					className={styles.delete}
+					className="delete-button"
 					aria-label={`Delete ${task.name} Task`}
 					onClick={() => deleteTask(task.id)}
 				>

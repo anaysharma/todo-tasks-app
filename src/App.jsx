@@ -9,6 +9,7 @@ function App() {
 	const [editedTask, setEditedTask] = useState(null);
 	const [isEditing, setIsEditing] = useState(false);
 	const [previousFocusElement, setPreviousFocusElement] = useState(null);
+	const [currentTaskView, setCurrentTaskView] = useState('all');
 
 	const addTask = (task) => {
 		setTasks((prevState) => [...prevState, task]);
@@ -42,10 +43,14 @@ function App() {
 		setPreviousFocusElement(document.activeElement);
 	};
 
+	const handleTaskViewButtonClick = (e) => {
+		setCurrentTaskView(e.target.getAttribute('data-viewAria'));
+	};
+
 	return (
 		<div className="container">
 			<header>
-				<h1>My Task List</h1>
+				<h1>{tasks.length ? 'Task List' : 'No Tasks added'}</h1>
 			</header>
 			{isEditing && (
 				<EditForm
@@ -55,14 +60,56 @@ function App() {
 				/>
 			)}
 			<CustomForm addTask={addTask} />
-			{tasks && (
-				<TaskList
-					tasks={tasks}
-					deleteTask={deleteTask}
-					toggleTask={toggleTask}
-					enterEditMode={enterEditMode}
-				/>
-			)}
+			<div className="task-view-container">
+				<button
+					className="btn-all"
+					aria-label="veiw all tasks"
+					data-selected="true"
+					data-viewAria="all"
+					onClick={handleTaskViewButtonClick}
+				>
+					All
+				</button>
+				<button
+					className="btn-todo"
+					aria-label="veiw incomplete tasks"
+					data-viewAria="incomplete"
+					onClick={handleTaskViewButtonClick}
+				>
+					ToDo
+				</button>
+				<button
+					className="btn-done"
+					aria-label="veiw complete tasks"
+					data-viewAria="complete"
+					onClick={handleTaskViewButtonClick}
+				>
+					Done
+				</button>
+			</div>
+			{tasks &&
+				(currentTaskView === 'all' ? (
+					<TaskList
+						tasks={tasks}
+						deleteTask={deleteTask}
+						toggleTask={toggleTask}
+						enterEditMode={enterEditMode}
+					/>
+				) : currentTaskView === 'incomplete' ? (
+					<TaskList
+						tasks={tasks.filter((task) => !task.checked)}
+						deleteTask={deleteTask}
+						toggleTask={toggleTask}
+						enterEditMode={enterEditMode}
+					/>
+				) : (
+					<TaskList
+						tasks={tasks.filter((task) => task.checked)}
+						deleteTask={deleteTask}
+						toggleTask={toggleTask}
+						enterEditMode={enterEditMode}
+					/>
+				))}
 		</div>
 	);
 }

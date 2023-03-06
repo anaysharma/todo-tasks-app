@@ -1,9 +1,8 @@
 import { TaskItem } from './TaskItem';
-import styles from './TaskList.module.css';
 
 export const TaskList = ({ tasks, deleteTask, toggleTask, enterEditMode }) => {
 	return (
-		<ul className={styles.tasks}>
+		<ul className="tasks">
 			{tasks
 				.sort((a, b) => b.id - a.id)
 				.map((task) => (

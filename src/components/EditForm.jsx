@@ -22,6 +22,7 @@ export const EditForm = ({ editedTask, updateTask, closeEditMode }) => {
 
 	return (
 		<div
+			className="editDialog"
 			role="dialog"
 			aria-labelledby="editTask"
 			onClick={(e) => {
