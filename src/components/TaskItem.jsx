@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import styles from './TaskItem.module.css';
 
-export const TaskItem = ({ task, deleteTask }) => {
+export const TaskItem = ({ task, deleteTask, toggleTask }) => {
 	const [isChecked, setIsChecked] = useState(task.checked);
 	const handleCheckboxChange = (e) => {
 		setIsChecked(!isChecked);
+		toggleTask(task.id);
 	};
 
 	return (
