@@ -190,11 +190,7 @@ h1 {
 	position: absolute;
 	right: 0;
 	border-radius: 20px;
-	background-image: linear-gradient(
-		to bottom right,
-		color-mix(in srgb, var(--color-accent) 80%, #f00),
-		color-mix(in srgb, var(--color-accent) 60%, #ff0)
-	);
+	background-color: var(--color-accent);
 	box-shadow: -3px -3px 6px var(--color-shade-dark),
 		3px 3px 6px var(--color-shade-light), inset 2px 2px 4px #fff6,
 		inset -2px -2px 4px #8002;
@@ -359,12 +355,14 @@ input[type='checkbox']:disabled {
 	scale: 0.6;
 }
 
-.edit-button:hover {
+.edit-button:hover,
+.edit-button:active {
 	background: var(--color-accent);
 	color: var(--color-bg);
 }
 
-.delete-button:hover {
+.delete-button:hover,
+.delete-button:active {
 	background: #f44;
 	color: var(--color-bg);
 }
