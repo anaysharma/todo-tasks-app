@@ -425,11 +425,7 @@ input[type='checkbox']:disabled {
 	margin-top: auto;
 	padding: 10px;
 	border-radius: 20px;
-	background-image: linear-gradient(
-		to bottom right,
-		color-mix(in srgb, var(--color-accent) 80%, #f00),
-		color-mix(in srgb, var(--color-accent) 60%, #ff0)
-	);
+	background-color: var(--color-accent);
 	box-shadow: -3px -3px 6px var(--color-shade-dark),
 		3px 3px 6px var(--color-shade-light), inset 2px 2px 4px #fff6,
 		inset -2px -2px 4px #8002;
@@ -475,5 +471,10 @@ input[type='checkbox']:checked + label {
 		background-color: var(--color-bg);
 		width: var(--main-content-width);
 		box-shadow: 0 -50px 0 50px var(--color-bg);
+	}
+
+	.wrapper > .input,
+	.wrapper > .label {
+		width: calc(var(--main-content-width) - 70px);
 	}
 }
