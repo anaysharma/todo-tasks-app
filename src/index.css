@@ -473,8 +473,22 @@ input[type='checkbox']:checked + label {
 		box-shadow: 0 -50px 0 50px var(--color-bg);
 	}
 
-	.wrapper > .input,
-	.wrapper > .label {
+	.wrapper > .input {
 		width: calc(var(--main-content-width) - 70px);
+	}
+
+	.task-group > .label {
+		width: calc(var(--main-content-width) - 220px);
+		font-size: 1rem;
+	}
+
+	.task-button-group {
+		padding-inline: 5px;
+	}
+
+	.task-button-group > button {
+		height: 50px;
+		width: 50px;
+		padding: 5px;
 	}
 }
