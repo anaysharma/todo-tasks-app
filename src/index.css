@@ -219,7 +219,7 @@ button {
 	grid-auto-flow: column;
 	grid-template-colums: repeat(3, 1fr);
 	gap: 4px;
-	background-color: color-mix(in srgb, var(--color-shade-dark) 85%, white);
+	/* background-color: color-mix(in srgb, var(--color-shade-dark) 85%, white); */
 	box-shadow: -3px -3px 6px var(--color-shade-dark),
 		3px 3px 6px var(--color-shade-light);
 	border-radius: 20px;
@@ -280,6 +280,7 @@ li {
 .task-group > .label {
 	font-family: 'Inter', sans-serif;
 	color: var(--color-fg);
+	font-size: 1.1rem;
 }
 
 input[type='checkbox'] {
@@ -444,8 +445,37 @@ button:active {
 	scale: 0.9;
 }
 
-@media (max-width: 399px) {
-	* {
-		scale: 0.9;
+input[type='checkbox']:checked + label {
+	text-decoration: line-through;
+	opacity: 0.6;
+}
+
+@media (max-width: 650px) {
+	:root {
+		--main-content-width: calc(100vw - 20px);
+	}
+
+	header {
+		display: grid;
+		justify-items: center;
+		width: var(--main-content-width);
+		gap: 90px;
+	}
+
+	h1 {
+		width: var(--main-content-width);
+		display: grid;
+		place-items: center;
+		height: 50px;
+	}
+
+	.tasks {
+		margin-top: 230px;
+	}
+
+	.task-view-container {
+		background-color: var(--color-bg);
+		width: var(--main-content-width);
+		box-shadow: 0 -50px 0 50px var(--color-bg);
 	}
 }
