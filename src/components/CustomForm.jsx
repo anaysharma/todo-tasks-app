@@ -28,7 +28,7 @@ export const CustomForm = ({ addTask }) => {
 					placeholder="Enter Task"
 				/>
 				<label htmlFor="task" className="label">
-					Enter Task
+					Enter Task <span class="task-warn">(60 chars max.)</span>
 				</label>
 			</div>
 			<button className="btn" aria-label="Add Task" type="submit">

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
 
 *,
 *::after,
@@ -105,8 +106,10 @@ header {
 
 h1 {
 	height: 40px;
-	font-family: 'Inter', sans-serif;
-	color: var(--color-fg);
+	font-family: 'Tilt Neon', cursive;
+	color: color-mix(in srgb, var(--color-fg) 60%, white);
+	text-shadow: -2px -2px 3px var(--color-shade-dark),
+		2px 2px 3px var(--color-shade-light);
 }
 
 .todo {
@@ -143,7 +146,8 @@ h1 {
 }
 
 .wrapper > .label {
-	width: 120px;
+	grid-auto-flow: column;
+	width: 250px;
 	transition: 200ms ease;
 }
 
@@ -151,7 +155,16 @@ h1 {
 	border-radius: 0 20px 20px 20px;
 }
 
+.task-warn {
+	opacity: 0.8;
+}
+
+.wrapper > .input:focus + .label > .task-warn {
+	display: none;
+}
+
 .wrapper > .input:focus + .label {
+	width: 120px;
 	top: -20px;
 	background: var(--color-bg);
 	padding: 5px 20px;
@@ -344,7 +357,7 @@ input[type='checkbox']:disabled {
 		3px 3px 6px var(--color-shade-light),
 		inset 2px 2px 4px var(--color-shade-light),
 		inset -2px -2px 4px var(--color-shade-dark);
-	transition: 200ms;
+	transition: scale 200ms;
 }
 
 .task-button-group > button > i {
@@ -367,6 +380,10 @@ input[type='checkbox']:disabled {
 	color: var(--color-bg);
 }
 
+.delete-button:focus {
+	outline-color: #f55;
+}
+
 .edit-dialog {
 	position: fixed;
 	inset: 0;
@@ -376,6 +393,20 @@ input[type='checkbox']:disabled {
 	display: grid;
 	place-items: center;
 	backdrop-filter: blur(10px);
+	animation: 400ms ease forwards modal;
+}
+
+@keyframes modal {
+	0% {
+		padding-bottom: 20vh;
+		opacity: 0;
+		backdrop-filter: blur(1px);
+	}
+	100% {
+		padding-bottom: 0;
+		opacity: 1;
+		backdrop-filter: blur(6px);
+	}
 }
 
 .edit-form {
@@ -432,16 +463,16 @@ input[type='checkbox']:disabled {
 }
 
 button {
-	transition: scale 200ms;
+	transition: scale 100ms;
 }
 
 button:active {
-	scale: 0.9;
+	scale: 0.8;
 }
 
 input[type='checkbox']:checked + label {
 	text-decoration: line-through;
-	opacity: 0.6;
+	opacity: 0.5;
 }
 
 @media (max-width: 650px) {
