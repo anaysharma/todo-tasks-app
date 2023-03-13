@@ -9,15 +9,22 @@ export const TaskItem = ({ task, deleteTask, toggleTask, enterEditMode }) => {
 	};
 
 	return (
-		<li className="task">
+		<li
+			className={`task ${isChecked ? 'checked' : ''} ${
+				task.deleting ? 'deleting' : ''
+			}`}
+		>
 			<div className="task-group">
 				<input
-					className="checkbox"
+					className="checkbox confetti-button"
 					type="checkbox"
 					checked={isChecked}
 					onChange={handleCheckboxChange}
 					name={task.name}
 					id={task.id}
+					onClick={() => {
+						!isChecked && confetti();
+					}}
 				/>
 				<label htmlFor={task.id} className="label">
 					{task.name}

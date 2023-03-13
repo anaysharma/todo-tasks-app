@@ -58,7 +58,7 @@ textarea::placeholder {
 	--color-fg: #444;
 	--color-shade-light: #fffa;
 	--color-shade-dark: #00000018;
-	--color-accent: #ffa800;
+	--color-accent: #ff9900;
 	--color-accent-shadow: #cc6644;
 	--main-content-width: min(1000px, 80vw);
 }
@@ -67,7 +67,7 @@ textarea::placeholder {
 	:root {
 		--color-bg: #181818;
 		--color-fg: #fffa;
-		--color-shade-light: #f0f0f018;
+		--color-shade-light: #f0f0f010;
 		--color-shade-dark: #000a;
 		--color-accent: #fe9600;
 	}
@@ -259,7 +259,6 @@ button {
 .tasks {
 	margin-top: 160px;
 	display: grid;
-	grid-auto-rows: 80px;
 	gap: 10px;
 	max-width: var(--main-content-width);
 }
@@ -269,14 +268,30 @@ i {
 }
 
 li {
+	height: 80px;
 	list-style: none;
 	display: flex;
 	border-radius: 20px;
 	background-color: var(--color-bg);
-	box-shadow: 3px 5px 20px -5px var(--color-shade-dark),
+	box-shadow: 5px 10px 25px -5px var(--color-shade-dark),
 		inset 2px 2px 4px var(--color-shade-light),
 		inset -2px -2px 4px var(--color-shade-dark);
 	padding-inline: 20px 10px;
+	transition: all 200ms;
+	transition-property: transform, opacity, height;
+}
+
+li.checked {
+	opacity: 0.8;
+	box-shadow: inset -3px -3px 6px var(--color-shade-light),
+		inset 3px 3px 6px var(--color-shade-dark);
+}
+
+li.deleting {
+	transform: translateY(50px) scale(0.8);
+	z-index: -10;
+	opacity: 0.2;
+	height: 1px;
 }
 
 .task-group {
@@ -293,8 +308,6 @@ li {
 }
 
 input[type='checkbox'] {
-	width: 20px;
-	height: 20px;
 	-webkit-appearance: none;
 	appearance: none;
 	background-color: color-mix(in srgb, var(--color-bg) 90%, #888);
@@ -310,6 +323,17 @@ input[type='checkbox'] {
 	place-content: center;
 	box-shadow: -3px -3px 6px var(--color-shade-dark),
 		3px 3px 6px var(--color-shade-light);
+	cursor: pointer;
+	transition: scale 200ms;
+}
+
+input[type='checkbox']:active {
+	scale: 0.8;
+}
+
+input[type='checkbox']:checked {
+	background: transparent;
+	box-shadow: none;
 }
 
 input[type='checkbox']::before {
@@ -317,18 +341,20 @@ input[type='checkbox']::before {
 	position: absolute;
 	width: 30px;
 	height: 30px;
-	border-radius: 20px;
 	transform: scale(0);
-	transition: 120ms transform ease-in-out;
+	opacity: 0;
+	transition: all 400ms cubic-bezier(0.34, 4, 0.64, 0.93);
 	box-shadow: inset 30px 30px var(--color-accent), 0 0 20px var(--color-accent);
 	background-color: CanvasText;
 	transform-origin: center;
+	clip-path: polygon(13% 40%, 36% 65%, 89% 15%, 100% 26%, 35% 87%, 0 53%);
 	top: 0px;
 	left: 0px;
 }
 
 input[type='checkbox']:checked::before {
 	transform: scale(1);
+	opacity: 1;
 }
 
 input[type='checkbox']:focus {
@@ -405,7 +431,7 @@ input[type='checkbox']:disabled {
 	100% {
 		padding-bottom: 0;
 		opacity: 1;
-		backdrop-filter: blur(6px);
+		backdrop-filter: blur(10px);
 	}
 }
 

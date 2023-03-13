@@ -9,6 +9,7 @@ export const CustomForm = ({ addTask }) => {
 			name: task,
 			checked: false,
 			id: Date.now(),
+			deleting: false,
 		});
 		setTask('');
 	};

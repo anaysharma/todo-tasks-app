@@ -16,7 +16,12 @@ function App() {
 	};
 
 	const deleteTask = (id) => {
-		setTasks((prevState) => prevState.filter((t) => t.id !== id));
+		setTasks((prevState) =>
+			prevState.map((t) => (t.id === id ? { ...t, deleting: true } : t))
+		);
+		setTimeout(() => {
+			setTasks((prevState) => prevState.filter((t) => t.id !== id));
+		}, 190);
 	};
 
 	const toggleTask = (id) => {
