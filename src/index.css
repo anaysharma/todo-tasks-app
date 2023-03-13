@@ -203,10 +203,16 @@ h1 {
 	position: absolute;
 	right: 0;
 	border-radius: 20px;
+	color: white;
 	background-color: var(--color-accent);
 	box-shadow: -3px -3px 6px var(--color-shade-dark),
 		3px 3px 6px var(--color-shade-light), inset 2px 2px 4px #fff6,
 		inset -2px -2px 4px #8002;
+}
+
+.btn > i,
+.edit-btn > i {
+	opacity: 1;
 }
 
 button {
@@ -482,6 +488,7 @@ input[type='checkbox']:disabled {
 	margin-top: auto;
 	padding: 10px;
 	border-radius: 20px;
+	color: white;
 	background-color: var(--color-accent);
 	box-shadow: -3px -3px 6px var(--color-shade-dark),
 		3px 3px 6px var(--color-shade-light), inset 2px 2px 4px #fff6,
